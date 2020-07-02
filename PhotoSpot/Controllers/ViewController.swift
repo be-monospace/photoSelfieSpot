@@ -9,11 +9,22 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Firebase
 
 class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var spotButton: UIButton!
+    
+    private var documentRef: DocumentReference!
+    
+    private lazy var db: Firestore = {
+        let firestoreDB = Firestore.firestore()
+        let settings = firestoreDB.settings
+        settings.areTimestampsInSnapshotsEnabled = true
+        firestoreDB.settings = settings
+        return firestoreDB
+    }()
     
     private lazy var locationManager: CLLocationManager = {
         let manager = CLLocationManager()
@@ -42,18 +53,38 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     
     @IBAction func spotButtonPressed() {
         
+        saveSpotToFirestore()
+        
+    }
+    
+    private func addSpotToMap (_ spot: PhotoSpot) {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: spot.latitude, longitude: spot.longitude)
+        annotation.title = "Great Photo Spot!"
+        annotation.subtitle = spot.reportedDate.formatAsString()
+        self.mapView.addAnnotation(annotation)
+    }
+    
+    private func saveSpotToFirestore() {
+        
         guard let location = self.locationManager.location else {
             return
         }
         
-        let annotation = MKPointAnnotation()
-        annotation.title = "Perfect Photo Spot"
-        annotation.subtitle = "Saved on 12/12/2020 8:50 AM"
-        annotation.coordinate = location.coordinate
+        var photoSpot = PhotoSpot(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
-        self.mapView.addAnnotation(annotation)
-    
+        self.db.collection("photo-spot").addDocument(data: photoSpot.toDictonary())
+        { [weak self] error in
+            if let error = error {
+             print(error)
+            } else {
+                photoSpot.documentID = self?.documentRef.documentID
+                self?.addSpotToMap(photoSpot)
+            }
+        }
     }
+    
+        
     
     private func setupUI() {
         self.spotButton.layer.cornerRadius =  6.0
