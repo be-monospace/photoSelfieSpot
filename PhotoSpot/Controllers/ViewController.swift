@@ -73,7 +73,7 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         
         var photoSpot = PhotoSpot(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         
-        self.db.collection("photo-spot").addDocument(data: photoSpot.toDictonary())
+        self.documentRef = self.db.collection("photo-spot").addDocument(data: photoSpot.toDictonary())
         { [weak self] error in
             if let error = error {
              print(error)

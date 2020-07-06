@@ -27,6 +27,6 @@ extension PhotoSpot {
 extension PhotoSpot {
     
     func toDictonary() -> [String:Any] {
-        return ["latitude": self.latitude, "longitude": self.longitude, "reportedDate": "hardcode"]
+        return ["latitude": self.latitude, "longitude": self.longitude, "reportedDate": self.reportedDate.formatAsString()]
     }
 }

@@ -14,6 +14,7 @@
 		AE1F5E0624A1801D00689BC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1F5E0424A1801D00689BC7 /* LaunchScreen.storyboard */; };
 		AE1F5E0F24A19B9500689BC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE1F5E0E24A19B9500689BC7 /* GoogleService-Info.plist */; };
 		AE2EE78624AE940400D6547F /* PhotoSpot.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE2EE78524AE940400D6547F /* PhotoSpot.swift */; };
+		AE71DFE224B3856400210A7C /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE71DFE124B3856400210A7C /* Date+Extensions.swift */; };
 		E274EEF4B2851756A6CC904E /* Pods_PhotoSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF1F581E89CC82A6BF90DDAD /* Pods_PhotoSpot.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		AE1F5E0724A1801D00689BC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE1F5E0E24A19B9500689BC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE2EE78524AE940400D6547F /* PhotoSpot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSpot.swift; sourceTree = "<group>"; };
+		AE71DFE124B3856400210A7C /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Date+Extensions.swift"; path = "../../../../Date+Extensions.swift"; sourceTree = "<group>"; };
 		AF1F581E89CC82A6BF90DDAD /* Pods_PhotoSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhotoSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED84851C677FA569C8467045 /* Pods-PhotoSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoSpot.release.xcconfig"; path = "Target Support Files/Pods-PhotoSpot/Pods-PhotoSpot.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,8 +75,8 @@
 		AE1F5DFA24A1801400689BC7 /* PhotoSpot */ = {
 			isa = PBXGroup;
 			children = (
-				AE2EE78724AE9D3700D6547F /* New Group1 */,
-				AE2EE78424AE939A00D6547F /* New Group */,
+				AE71DFE024B3855000210A7C /* Extensions */,
+				AE2EE78424AE939A00D6547F /* Models */,
 				AE1F5E0D24A1810700689BC7 /* Controllers */,
 				AE1F5DFB24A1801400689BC7 /* AppDelegate.swift */,
 				AE1F5DFF24A1801400689BC7 /* Main.storyboard */,
@@ -94,19 +96,20 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		AE2EE78424AE939A00D6547F /* New Group */ = {
+		AE2EE78424AE939A00D6547F /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				AE2EE78524AE940400D6547F /* PhotoSpot.swift */,
 			);
-			path = "New Group";
+			path = Models;
 			sourceTree = "<group>";
 		};
-		AE2EE78724AE9D3700D6547F /* New Group1 */ = {
+		AE71DFE024B3855000210A7C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				AE71DFE124B3856400210A7C /* Date+Extensions.swift */,
 			);
-			path = "New Group1";
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D47535343F3B310358FF5A71 /* Pods */ = {
@@ -235,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE1F5DFE24A1801400689BC7 /* ViewController.swift in Sources */,
+				AE71DFE224B3856400210A7C /* Date+Extensions.swift in Sources */,
 				AE2EE78624AE940400D6547F /* PhotoSpot.swift in Sources */,
 				AE1F5DFC24A1801400689BC7 /* AppDelegate.swift in Sources */,
 			);
