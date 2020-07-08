@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct PhotoSpot {
     
@@ -17,6 +18,17 @@ struct PhotoSpot {
 }
 
 extension PhotoSpot {
+    
+    init?(_ snapshot: QueryDocumentSnapshot) {
+        guard let latitude = snapshot["latitude"] as? Double,
+            let longitude = snapshot["longitude"] as? Double else {
+                return nil
+        }
+        
+        self.latitude = latitude
+        self.longitude = longitude
+        self.documentID = snapshot.documentID
+    }
     
     init(latitude: Double, longitude: Double) {
         self.latitude = latitude

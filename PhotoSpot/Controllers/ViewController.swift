@@ -16,6 +16,8 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var spotButton: UIButton!
     
+    private(set) var photoSpot = [PhotoSpot]()
+    
     private var documentRef: DocumentReference!
     
     private lazy var db: Firestore = {
@@ -43,6 +45,36 @@ class ViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDele
         self.mapView.delegate = self
         
         setupUI()
+        configureObservers()
+    }
+    
+    private func configureObservers() {
+        self.db.collection("photo-spot").addSnapshotListener { [weak self] snapshot, error in
+            
+            guard let snapshot = snapshot,
+                error == nil else {
+                    print("Error Fetching Document")
+                    return
+            }
+            
+            snapshot.documentChanges.forEach { diff in
+                
+                if diff.type == .added {
+                    if let photoSpot = PhotoSpot(diff.document) {
+                        self?.photoSpot.append(photoSpot)
+                        
+                    }
+                } else if diff.type == .removed {
+                    if let photoSpot = PhotoSpot(diff.document) {
+                        if let photoSpot = self?.photoSpot {
+                            self?.photoSpot = photoSpot.filter
+                                 // { $0.documentID != photoSpot.documentID }
+                        }
+                    }
+                }
+            }
+            
+        }
     }
     
     func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
